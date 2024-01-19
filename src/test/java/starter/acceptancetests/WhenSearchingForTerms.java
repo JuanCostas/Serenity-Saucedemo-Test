@@ -5,6 +5,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.annotations.CastMember;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.page.TheWebPage;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,24 +17,31 @@ class WhenSearchingForTerms {
 
     @CastMember
     Actor actor;
-
-    @Test
-    @DisplayName("Should be able to search for red things")
-    void searchForRedThings() {
+    @BeforeEach
+    void login() {
         actor.attemptsTo(
                 NavigateTo.theSearchHomePage(),
-                LookForInformation.about("red"),
-                Ensure.that(TheWebPage.title()).containsIgnoringCase("red")
+                LookForInformation.enterUserName("standard_user"),
+                LookForInformation.enterThePass("secret_sauce")
+
         );
     }
-
+    @Test
+    @DisplayName("Should be able to shop")
+    void shop() throws InterruptedException {
+        actor.attemptsTo(
+                LookForInformation.item()
+        );
+        Thread.sleep(5000);
+    }
+/*
     @Test
     @DisplayName("Should be able to search for green things")
     void searchForGreenThings() {
         actor.attemptsTo(
                 NavigateTo.theSearchHomePage(),
-                LookForInformation.about("green"),
+                LookForInformation.enterUserName("green"),
                 Ensure.that(TheWebPage.title()).containsIgnoringCase("green")
         );
-    }
+    }*/
 }

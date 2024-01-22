@@ -22,10 +22,20 @@ class WhenSearchingForTerms {
         actor.attemptsTo(
                 NavigateTo.theSearchHomePage(),
                 LookForInformation.enterUserName("standard_user"),
-                LookForInformation.enterThePass("secret_sauce")
-
+                LookForInformation.enterThePass("secret_sauce"),
+                LookForInformation.clickLogin()
         );
     }
+    /*@Test
+    @DisplayName("This test is the proof of the login exist")
+    void Simplelogin() {
+        actor.attemptsTo(
+                NavigateTo.theSearchHomePage(),
+                LookForInformation.enterUserName("standard_user"),
+                LookForInformation.enterThePass("secret_sauce"),
+                LookForInformation.clickLogin()
+        );
+    }*/
     @Test
     @DisplayName("Should be able to shop")
     void shop() throws InterruptedException {

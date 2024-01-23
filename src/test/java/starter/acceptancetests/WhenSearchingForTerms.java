@@ -3,8 +3,6 @@ package starter.acceptancetests;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.annotations.CastMember;
-import net.serenitybdd.screenplay.ensure.Ensure;
-import net.serenitybdd.screenplay.questions.page.TheWebPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,32 +24,25 @@ class WhenSearchingForTerms {
                 LookForInformation.clickLogin()
         );
     }
-    /*@Test
-    @DisplayName("This test is the proof of the login exist")
-    void Simplelogin() {
-        actor.attemptsTo(
-                NavigateTo.theSearchHomePage(),
-                LookForInformation.enterUserName("standard_user"),
-                LookForInformation.enterThePass("secret_sauce"),
-                LookForInformation.clickLogin()
-        );
-    }*/
     @Test
     @DisplayName("Should be able to shop")
     void shop() throws InterruptedException {
+        int ran;
+        for(int i = 0; i<3; i++) {
+            ran = ((int) (Math.random() * 6 + 1));
+            actor.attemptsTo(
+                    LookForInformation.item(ran)
+            );
+        }
         actor.attemptsTo(
-                LookForInformation.item()
+                LookForInformation.shoppingCart(),
+                LookForInformation.checkout(),
+                LookForInformation.firstName("Juan"),
+                LookForInformation.lastName("Costas"),
+                LookForInformation.zipCode("4000"),
+                LookForInformation.buttonContinue(),
+                LookForInformation.finish()
         );
         Thread.sleep(5000);
     }
-/*
-    @Test
-    @DisplayName("Should be able to search for green things")
-    void searchForGreenThings() {
-        actor.attemptsTo(
-                NavigateTo.theSearchHomePage(),
-                LookForInformation.enterUserName("green"),
-                Ensure.that(TheWebPage.title()).containsIgnoringCase("green")
-        );
-    }*/
 }

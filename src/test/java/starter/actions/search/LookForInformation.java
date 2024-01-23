@@ -21,10 +21,45 @@ public class LookForInformation {
         );
     }
     public static Performable clickLogin(){
-        return Task.where("{0} Click on Login button after write user name and password", Click.on(SearchLogin.SEARCH_LOGINBUTTON));
+        return Task.where("{0} Click on Login button after write user name and password", Click.on(SearchLogin.SEARCH_LOGINBUTTON)
+        );
     }
-    public static Performable item() {
-        return Task.where("{0} Click on the random article", Click.on(SearchArticle.SEARCH_ITEM)
+    public static Performable item(int ran) {
+        return Task.where("{0} Click on the random article " + ran, Click.on(SearchArticle.myserachitem(ran))
+        );
+    }
+    public static Performable shoppingCart(){
+        return Task.where("{0} Click on the button Shopping Cart", Click.on(SearchArticle.SHOPPING_CART)
+        );
+    }
+    public static Performable checkout(){
+        return Task.where("{0} Click on the fucking button Checkout", Click.on(SearchArticle.CHECKOUT)
+        );
+    }
+    public static Performable firstName(String name) {
+        return Task.where("{0} Entry the first name '" + name + "'",
+                Enter.theValue(name)
+                        .into(SearchArticle.FIRST_NAME)
+        );
+    }
+    public static Performable lastName(String last) {
+        return Task.where("{0} Entry the last name '" + last + "'",
+                Enter.theValue(last)
+                        .into(SearchArticle.LAST_NAME)
+        );
+    }
+    public static Performable zipCode(String postal) {
+        return Task.where("{0} Entry the zip code '" + postal + "'",
+                Enter.theValue(postal)
+                        .into(SearchArticle.ZIP_CODE)
+        );
+    }
+    public static Performable buttonContinue(){
+        return Task.where("{0} Click on the button Continue", Click.on(SearchArticle.CONTINUE)
+        );
+    }
+    public static Performable finish(){
+        return Task.where("{0} Click on the button Continue", Click.on(SearchArticle.FINISH)
         );
     }
 }
